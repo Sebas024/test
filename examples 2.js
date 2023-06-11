@@ -1,30 +1,54 @@
-// let x = 1;
-// console.log(`x is ${x}`);
+const transpose = function(matrix) {
+  // Replace this code with your solution
+  const mtrx = matrix[0].length;
 
-// setTimeout(() => {
-//   x++;
-//   console.log(`inside the call x is ${x}`);
-// }, 2000);
+  const trx = matrix.length;
 
-// console.log(`after call x is ${x}`);
+  const results = [];
 
-// console.log('before the setTimeout');
+  for (let m = 0; m < mtrx; m++) {
+    const newmtrx = [];
+    for (let i = 0; i < trx; i++) {
+      newmtrx.push(matrix[i][m]);
+    }
 
-// const delay = 0;
+    results.push(newmtrx);
 
-// setTimeout(() => {
-//   console.log('inside the setTimeout');
-// }, delay);
+  }
 
-// console.log('after the setTimeout');
+  return results;
+ 
+};
 
+// Do not edit this function.
+const printMatrix = (matrix) => {
+  for (const row of matrix) {
+    for (const el of row) {
+      process.stdout.write(el + " ");
+    }
+    process.stdout.write("\n");
+  }
+};
 
-// what will the code output?
+printMatrix(
+  transpose([
+    [1, 2, 3, 4],
+    [1, 2, 3, 4],
+    [1, 2, 3, 4],
+    [1, 2, 3, 4],
+  ])
+);
 
-let i;
+console.log("----");
 
-for (let i = 0; i < 3; i++) {
-  setTimeout(() => {
-    console.log(i);
-  }, 100);
-}
+printMatrix(
+  transpose([
+    [1, 2],
+    [3, 4],
+    [5, 6],
+  ])
+);
+
+console.log("----");
+
+printMatrix(transpose([[1, 2, 3, 4, 5, 6, 7]]));
