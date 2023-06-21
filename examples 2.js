@@ -1,54 +1,59 @@
-const transpose = function(matrix) {
-  // Replace this code with your solution
-  const mtrx = matrix[0].length;
+// const wordSearch = (letters, word) => {
+//   // Convert each row of letters into a string
+//   const horizontalJoin = letters.map(ls => ls.join(''));
 
-  const trx = matrix.length;
+//   // Iterate over each string in horizontalJoin
+//   for (let l of horizontalJoin) {
+//     // Check if the current string includes the word
+//     if (l.includes(word)) {
+//       return true; // Return true if the word is found horizontally
+//     }
+//   }
 
-  const results = [];
+//   // Create the transposed array to enable vertical search
+//   const transposedLetters = letters[0].map((col, i) => letters.map(row => row[i]));
+//   const verticalJoin = transposedLetters.map(ls => ls.join(''));
 
-  for (let m = 0; m < mtrx; m++) {
-    const newmtrx = [];
-    for (let i = 0; i < trx; i++) {
-      newmtrx.push(matrix[i][m]);
-    }
+//   // Iterate over each string in verticalJoin
+//   for (let l of verticalJoin) {
+//     // Check if the current string includes the word
+//     if (l.includes(word)) {
+//       return true; // Return true if the word is found vertically
+//     }
+//   }
 
-    results.push(newmtrx);
+//   return false; // Return false if the word is not found
+// };
 
+// module.exports = wordSearch;
+
+
+
+
+const wordSearch = (letters, word) => {
+  // This array stores strings where each string represents a row from the letters array joined together.
+  const horizontalJoin = letters.map(ls => ls.join(''));
+  // loops and checkif there's a word if yes then return true
+  for (let l of horizontalJoin) {
+    if (l.includes(word)) return true;
   }
-
-  return results;
- 
+  // stores vertical searches
+  const verticalJoin = [];
+  // do the loopy loops again to seatch for words per column
+  for (let i = 0; i < letters[0].length; i++) {
+    let verticalString = '';
+    for (let j = 0; j < letters.length; j++) {
+      verticalString += letters[j][i];
+    }
+    verticalJoin.push(verticalString);
+  }
+  // looped and check if the letters collecteed formed words
+  // if yes then true if no then false
+  for (let l of verticalJoin) {
+    if (l.includes(word)) return true;
+  }
+  
+  return false;
 };
 
-// Do not edit this function.
-const printMatrix = (matrix) => {
-  for (const row of matrix) {
-    for (const el of row) {
-      process.stdout.write(el + " ");
-    }
-    process.stdout.write("\n");
-  }
-};
-
-printMatrix(
-  transpose([
-    [1, 2, 3, 4],
-    [1, 2, 3, 4],
-    [1, 2, 3, 4],
-    [1, 2, 3, 4],
-  ])
-);
-
-console.log("----");
-
-printMatrix(
-  transpose([
-    [1, 2],
-    [3, 4],
-    [5, 6],
-  ])
-);
-
-console.log("----");
-
-printMatrix(transpose([[1, 2, 3, 4, 5, 6, 7]]));
+module.exports = wordSearch;
